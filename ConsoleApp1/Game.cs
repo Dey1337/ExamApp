@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using static System.Console;
 
 namespace ConsoleApp1
 {
-    class Game
+    public class Game
     {
         public void Start()
         {
@@ -26,10 +27,11 @@ namespace ConsoleApp1
 ██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║
 ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
  
-( Use ArrowKeys to select any option )";
+        ( Use ArrowKeys to select any option )
+    Read the info if you play for the first time";
 
 
-            string[] options = { "Start New Account", "Load Account", "Info about starters" };
+            string[] options = { "Start New Account", "Load Account", "Info about starters", "Leaderboard" };
             StartMenu mainMenu = new StartMenu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
@@ -44,24 +46,32 @@ namespace ConsoleApp1
                 case 2:
                     infoStarters();
                     break;
+                case 3:
+                    leaderboard();
+                    break;
 
             }
 
         }
         public void newAcc()
         {
-
+            
         }
 
         public void loadAcc()
         {
-
+            
 
         }
 
         public void infoStarters()
         {
 
+
+        }
+
+        public void leaderboard()
+        {
 
         }
     }

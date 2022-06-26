@@ -7,7 +7,7 @@ using static System.Console;
 
 namespace ConsoleApp1
 {
-    class StartMenu
+    public class StartMenu
     {
         private int SelectedIndex;
         private string[] Options;
