@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace ConsoleApp1
 {
+    [DataContract]
     public class Player
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string starter { get; set; }
-
+        [DataMember]
         public int exp { get; set; }
-
+        [DataMember]
         public int level { get; set; }
 
-
-        public Player CreateObjectFromCsvLine(string csvLine)
+        public Player(int id, string name, string starter, int exp, int level)
         {
-            string[] values = csvLine.Split(',');
-            Player player = new Player();
-            player.Id = Convert.ToInt32(values[0]);
-            player.Name = values[1];
-            player.starter = values[2];
-            player.exp = Convert.ToInt32(values[3]);
-            player.level = Convert.ToInt32(values[4]);
-
-            return player;
+            this.Id = id;
+            this.Name = name;
+            this.starter = starter;
+            this.exp = exp;
+            this.level = level;
         }
-
     }
 }

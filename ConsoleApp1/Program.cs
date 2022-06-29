@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace ConsoleApp1
 {
-    public class Program
+    class Program
     {
+
         static void Main(string[] args)
         {
             Game mygame = new Game();
             mygame.Start();
-
-            PlayersReg reg = new PlayersReg();
-            reg.LoadData(@"C:\Users\stfu\Documents\GitHub\ExamApp\ConsoleApp1\registry.csv");
-
-
         }
     }
 }
