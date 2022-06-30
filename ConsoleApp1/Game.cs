@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 using static System.Console;
+using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
@@ -98,46 +99,56 @@ namespace ConsoleApp1
             ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("Enter Player Name : ");
             string userName = Console.ReadLine();
-            Clear();
-
-            Console.WriteLine(@"                                           /
-                        _,.------....___,.' ',.-.
-                     ,-'          _,.--' |
-                   , '         _.-'.
-                  /   ,     , '                   `
-                 .   /     /                     ``.
-                 |  |     .                       \.\
-       ____ | ___._.  | __               \ `.
-     .'    `---'''       ``'-.--''`  \               .  \
-    .  , __               `              |   .
-    `, '         ,-''.               \             | L
-   , '          '    _.'                -._          /    |
-  ,`-.    , ''.   `--'                      >.      ,'     |
- . .'\'   `-'       __,  , -.         /  `.__.-      , '
- ||:, .           , '  ;  /  / \ `        `.    .      .' /
- j |:D  \          `--'  ', '_  . .         `.__, \   , /
-/ L:_ |                 .  '' :_;                `.'.'
-.   '''''                  ''''''                    V
- `.                                 .    `.   _, ..  `
-   `, _.    ._, -'/    .. `,'   __  `
-    ) \`._ ___....----''  ,'   .'  \ |   '  \  .
-   /   `. ''`-.--''         _,' ,'     `---' |    `./  |
-  ._  ''''--.._____..--'   ,             ' |
-  | .' `. `-.                /-.           /          ,
-  | `._.'    `,_            ;  /         ,'.
- .'          /| `-.        . ,'         ,           ,
- '-.__ __ _,','    '`-..___; -...__   ,.'\ ____.___.'
- `'^--'..'   '-`-^-''--    `-^-'`.'''''''`.,^.`.--' '");
-
-
-            ForegroundColor = ConsoleColor.Blue;
-            Console.Write("\n[X] ");
+            
             ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("Choose a starter : ");
+            
+
+            Console.WriteLine(@"
+1. Bulbasaur                2. Charmander    		3. Squirtle
+Type: Grass + Poison        Type: Fire                  Type: Water
+HP: 45                      HP: 39                      HP: 44
+Attack: 49                  Attack: 52                  Attack: 48
+Speed: 45                   Speed: 65                   Speed: 43 
+");
+            
+            Console.Write("Please Type the name of the pokemon you have chosen ! ( Case sensitive ) : ");
 
             string starter = Console.ReadLine();
-            Console.WriteLine(playerList.Count);
-            Player TheNewPlayer = new Player(5, userName, starter, 0, 1);
+            bool incorrect = true;
+            do
+            {
+                if (starter == "Bulbasaur")
+                {
+                    ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("\n[X]");
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine(" You have chosen Bulbasaur as your first Pokemon ! Press any key to continue ... ");
+                    incorrect = false;
+                } else if (starter == "Charmander")
+                {
+                    ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("\n[X]");
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine(" You have chosen Charmander as your first Pokemon ! Press any key to continue ... ");
+                    incorrect = false;
+                } else if (starter == "Squirtle")
+                {
+                    ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("\n[X]");
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine(" You have chosen Squirtle as your first Pokemon ! Press any key to continue ... ");
+                    incorrect = false;
+                }else
+                {
+                    
+                    Console.Write("\nPlease Type the name of the starter you have chosen ! ( Case sensitive ) : ");
+                    starter = Console.ReadLine();
+                }
+            } while (incorrect);
+
+
+
+            Player TheNewPlayer = new Player(8, userName, starter, 0, 1);
             playerList.Add(TheNewPlayer);
             SaveViaDataContractSerialization(playerList, "register.xml");
             
