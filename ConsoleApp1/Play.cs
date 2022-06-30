@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Xml;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
 
 namespace ConsoleApp1
 {
-    
+    public class PlayGame
+    {
+        public int RunGame()
+        {
+            return 0;
+        }
+
+
+
+    }
 }

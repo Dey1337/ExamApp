@@ -146,9 +146,7 @@ Speed: 45                   Speed: 65                   Speed: 43
                 }
             } while (incorrect);
 
-
-
-            Player TheNewPlayer = new Player(8, userName, starter, 0, 1);
+            Player TheNewPlayer = new Player(playerList.Count+1, userName, starter, 0, 1);
             playerList.Add(TheNewPlayer);
             SaveViaDataContractSerialization(playerList, "register.xml");
             
@@ -158,9 +156,33 @@ Speed: 45                   Speed: 65                   Speed: 43
 
         public void loadAcc()
         {
+            Clear();
+            ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(@"                                                                                                                                                                           
+██╗      ██████╗  █████╗ ██████╗      █████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███╗   ██╗████████╗
+██║     ██╔═══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║████╗  ██║╚══██╔══╝
+██║     ██║   ██║███████║██║  ██║    ███████║██║     ██║     ██║   ██║██║   ██║██╔██╗ ██║   ██║   
+██║     ██║   ██║██╔══██║██║  ██║    ██╔══██║██║     ██║     ██║   ██║██║   ██║██║╚██╗██║   ██║   
+███████╗╚██████╔╝██║  ██║██████╔╝    ██║  ██║╚██████╗╚██████╗╚██████╔╝╚██████╔╝██║ ╚████║   ██║   
+╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   
+                                                                                                                                                                                    
+ ");
+
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
+            ForegroundColor = ConsoleColor.Blue;
+            Console.Write("\n[X] ");
+            ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("Please Type the name of the account you want to load ! ( Case sensitive ) : ");
+            string findName = Console.ReadLine();
 
+            
+
+            ForegroundColor = ConsoleColor.Blue;
+            Console.Write("\n[X] ");
+            ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("Loading account of " + found.Name + " with userID " + found.Id + "  ... Press Any Key to continue...");
+            Console.ReadKey();
         }
 
         public void infoStarters()
