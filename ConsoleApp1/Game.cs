@@ -94,13 +94,10 @@ namespace ConsoleApp1
 
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
-            ForegroundColor = ConsoleColor.Blue;
-            Console.Write("[X] ");
-            ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("Enter Player Name : ");
-            string userName = Console.ReadLine();
             
-            ForegroundColor = ConsoleColor.DarkYellow;
+            
+            
+
             
 
             Console.WriteLine(@"
@@ -110,11 +107,13 @@ HP: 45                      HP: 39                      HP: 44
 Attack: 49                  Attack: 52                  Attack: 48
 Speed: 45                   Speed: 65                   Speed: 43 
 ");
-            
+            ForegroundColor = ConsoleColor.Blue;
+            Console.Write("[X] ");
+            ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("Please Type the name of the pokemon you have chosen ! ( Case sensitive ) : ");
 
             string starter = Console.ReadLine();
-            bool incorrect = true;
+            
             do
             {
                 if (starter == "Bulbasaur")
@@ -122,35 +121,51 @@ Speed: 45                   Speed: 65                   Speed: 43
                     ForegroundColor = ConsoleColor.Blue;
                     Console.Write("\n[X]");
                     ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine(" You have chosen Bulbasaur as your first Pokemon ! Press any key to continue ... ");
-                    incorrect = false;
+                    Console.WriteLine(" You have chosen Bulbasaur as your first Pokemon !  \n");
+                    break;
                 } else if (starter == "Charmander")
                 {
                     ForegroundColor = ConsoleColor.Blue;
                     Console.Write("\n[X]");
                     ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine(" You have chosen Charmander as your first Pokemon ! Press any key to continue ... ");
-                    incorrect = false;
+                    Console.WriteLine(" You have chosen Charmander as your first Pokemon !  \n");
+                    break;
                 } else if (starter == "Squirtle")
                 {
                     ForegroundColor = ConsoleColor.Blue;
                     Console.Write("\n[X]");
                     ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine(" You have chosen Squirtle as your first Pokemon ! Press any key to continue ... ");
-                    incorrect = false;
+                    Console.WriteLine(" You have chosen Squirtle as your first Pokemon !  \n");
+                    break;
                 }else
                 {
                     
                     Console.Write("\nPlease Type the name of the starter you have chosen ! ( Case sensitive ) : ");
                     starter = Console.ReadLine();
                 }
-            } while (incorrect);
+            } while (true);
 
-            Player TheNewPlayer = new Player(playerList.Count+1, userName, starter, 0, 1);
-            playerList.Add(TheNewPlayer);
-            SaveViaDataContractSerialization(playerList, "register.xml");
             
-            
+
+            int index = 0;
+            while (true)
+            {
+                Console.Write("\nPlease type a NEW account name ( Case sensitive ) : ");
+                string findName = Console.ReadLine();
+                bool alreadyExists = playerList.Any(x => x.Name == findName);
+                if (!alreadyExists)
+                {
+                    Player TheNewPlayer = new Player(playerList.Count , findName, starter, 0, 1); // index stars from 0, count = newindex
+                    playerList.Add(TheNewPlayer);
+                    SaveViaDataContractSerialization(playerList, "register.xml");
+
+                    ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("\n[X]");
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine(" Welcome Trainer " + findName + "! Press any key to continue ... ");
+                    break;
+                }
+            }
             Console.ReadKey();
         }
 
@@ -173,16 +188,36 @@ Speed: 45                   Speed: 65                   Speed: 43
             ForegroundColor = ConsoleColor.Blue;
             Console.Write("\n[X] ");
             ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("Please Type the name of the account you want to load ! ( Case sensitive ) : ");
-            string findName = Console.ReadLine();
 
+            int index = 0;
+            while (true)
+            {
+                Console.Write("Please Type the name of the account you want to load ! ( Case sensitive ) : ");
+                string findName = Console.ReadLine();
+                bool alreadyExists = playerList.Any(x => x.Name == findName);
+                if (alreadyExists)
+                {
+                    for (int i = 1; i < playerList.Count; i++)
+                    {
+                        if (playerList[i].Name == findName)
+                        {
+                            index = i;
+                            break;
+                        }
+                        
+                    }
+                    break;
+                }
+
+            }
             
-
-            ForegroundColor = ConsoleColor.Blue;
-            Console.Write("\n[X] ");
-            ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Write("Loading account of " + found.Name + " with userID " + found.Id + "  ... Press Any Key to continue...");
+            Console.WriteLine(index);
+            Console.WriteLine("JUST EVOLVED");
+            playerList[index].exp = playerList[index].exp + 10;
+            playerList[index].level++;
+            SaveViaDataContractSerialization(playerList, "register.xml");
             Console.ReadKey();
+
         }
 
         public void infoStarters()
