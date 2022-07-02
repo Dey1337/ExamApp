@@ -37,9 +37,16 @@ namespace ConsoleApp1
         }
         public void Start()
         {
-            Title = "𝐏𝐎𝐊𝐄𝐌𝐎𝐍 𝐒𝐈𝐌𝐏𝐋𝐄 𝐆𝐀𝐌𝐄 - Mazilu Adrian 2022";
+            Title = "𝐏𝐎𝐊𝐄𝐌𝐎𝐍 𝐒𝐈𝐌𝐏𝐋𝐄 𝐆𝐀𝐌𝐄 - Adrian Mazilu -  2022";
             RunMainMenu();
 
+        }
+
+        public void prefix()
+        {
+            ForegroundColor = ConsoleColor.Blue;
+            Console.Write("\n\n[X] ");
+            ForegroundColor = ConsoleColor.DarkYellow;
         }
 
         private void RunMainMenu()
@@ -94,22 +101,16 @@ namespace ConsoleApp1
 
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
-            
-            
-            
 
-            
 
             Console.WriteLine(@"
 1. Bulbasaur                2. Charmander    		3. Squirtle
 Type: Grass + Poison        Type: Fire                  Type: Water
-HP: 45                      HP: 39                      HP: 44
+HP: 9                       HP: 8                       HP: 10
 Attack: 49                  Attack: 52                  Attack: 48
 Speed: 45                   Speed: 65                   Speed: 43 
 ");
-            ForegroundColor = ConsoleColor.Blue;
-            Console.Write("[X] ");
-            ForegroundColor = ConsoleColor.DarkYellow;
+            prefix();
             Console.Write("Please Type the name of the pokemon you have chosen ! ( Case sensitive ) : ");
 
             string starter = Console.ReadLine();
@@ -118,23 +119,17 @@ Speed: 45                   Speed: 65                   Speed: 43
             {
                 if (starter == "Bulbasaur")
                 {
-                    ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\n[X]");
-                    ForegroundColor = ConsoleColor.DarkYellow;
+                    prefix();
                     Console.WriteLine(" You have chosen Bulbasaur as your first Pokemon !  \n");
                     break;
                 } else if (starter == "Charmander")
                 {
-                    ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\n[X]");
-                    ForegroundColor = ConsoleColor.DarkYellow;
+                    prefix();
                     Console.WriteLine(" You have chosen Charmander as your first Pokemon !  \n");
                     break;
                 } else if (starter == "Squirtle")
                 {
-                    ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\n[X]");
-                    ForegroundColor = ConsoleColor.DarkYellow;
+                    prefix();
                     Console.WriteLine(" You have chosen Squirtle as your first Pokemon !  \n");
                     break;
                 }else
@@ -185,9 +180,7 @@ Speed: 45                   Speed: 65                   Speed: 43
 
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
-            ForegroundColor = ConsoleColor.Blue;
-            Console.Write("\n[X] ");
-            ForegroundColor = ConsoleColor.DarkYellow;
+            prefix();
 
             int index = 0;
             while (true)
@@ -211,24 +204,44 @@ Speed: 45                   Speed: 65                   Speed: 43
 
             }
             
-            Console.WriteLine(index);
-            Console.WriteLine("JUST EVOLVED");
-            playerList[index].exp = playerList[index].exp + 10;
-            playerList[index].level++;
-            SaveViaDataContractSerialization(playerList, "register.xml");
-            Console.ReadKey();
+            Console.WriteLine("Loaded account of " + playerList[index].Name + " with ID " +  index);
+            Console.Write("Press any key to start the game ... Use Fullscreen for better experience!  ");
 
+            Console.ReadKey();
+            PlayGame actualGame = new PlayGame();
+            
+            actualGame.RunGame(index, playerList[index].starter, playerList[index].exp, playerList[index].level);
         }
 
         public void infoStarters()
         {
+
+            Clear();
+            prefix();
+            Console.Write(@"You have to choose between 3 starter pokemons , you can find all their info when you create a new account");
+
+            prefix();
+            Console.Write(@"The most important stat is the HP, there are no mechanics for special moves / types / speed yet");
+
+            prefix();
+            Console.Write(@"There is only one pokemon to encounter, easy to fight , more may come with future updates");
+
+            prefix();
+            Console.Write(@"This project was created just to practice and test what I learned so far - Adrian Mazilu - 2022");
+
+            prefix();
+            Console.Write(@"Thank you for playing btw . Press any key to return to main menu ... ");
+
+            Console.ReadKey();
+            Clear();
+            RunMainMenu();
 
 
         }
 
         public void leaderboard()
         {
-
+            
         }
     }
 
