@@ -241,7 +241,7 @@ namespace ConsoleApp1
                             break;
                     }
                 }
-                // thank you C# for letting me use health only in a loop and not afterwards, very helpful
+                
                 if (starter == "Charmander")
                 {
                     Clear();
@@ -334,7 +334,6 @@ namespace ConsoleApp1
                             break;
                     }
                 }
-                
                 
             }
             Clear();

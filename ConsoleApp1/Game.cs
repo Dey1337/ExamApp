@@ -37,7 +37,7 @@ namespace ConsoleApp1
         }
         public void Start()
         {
-            Title = "𝐏𝐎𝐊𝐄𝐌𝐎𝐍 𝐒𝐈𝐌𝐏𝐋𝐄 𝐆𝐀𝐌𝐄 - Adrian Mazilu -  2022";
+            Title = "𝐏𝐎𝐊𝐄𝐌𝐎𝐍 𝐒𝐈𝐌𝐏𝐋𝐄 𝐆𝐀𝐌𝐄";
             RunMainMenu();
 
         }
@@ -140,9 +140,6 @@ Speed: 45                   Speed: 65                   Speed: 43
                 }
             } while (true);
 
-            
-
-            int index = 0;
             while (true)
             {
                 Console.Write("\nPlease type a NEW account name ( Case sensitive ) : ");
@@ -154,14 +151,17 @@ Speed: 45                   Speed: 65                   Speed: 43
                     playerList.Add(TheNewPlayer);
                     SaveViaDataContractSerialization(playerList, "register.xml");
 
-                    ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\n[X]");
-                    ForegroundColor = ConsoleColor.DarkYellow;
+                    prefix();
                     Console.WriteLine(" Welcome Trainer " + findName + "! Press any key to continue ... ");
+
+
                     break;
                 }
             }
+
             Console.ReadKey();
+            PlayGame actualGame = new PlayGame();
+            actualGame.RunGame(playerList.Count-1, starter, 0, 1);
         }
 
         public void loadAcc()
@@ -241,7 +241,68 @@ Speed: 45                   Speed: 65                   Speed: 43
 
         public void leaderboard()
         {
-            
+            List<Player> playerList = new List<Player>();
+            playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
+
+
+            string[] options = { "Order by Name", "Order by Name Descending" , "Order by Level", "Order By Level Descending" ,"Order by Creation Date", "Order by Creation Date Descending" };
+            StartMenu mainMenu = new StartMenu("", options);
+            int selectedIndex = mainMenu.Run();
+            switch (selectedIndex)
+            {
+                case 0:
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    List<Player> sortbyName = playerList.OrderBy(o => o.Name).ToList();
+                    if (sortbyName.Count < 14)
+                        for (int i = 0; i < sortbyName.Count; i++) Console.Write(i + 1 + ". " + sortbyName[i].Name + " - level " + sortbyName[i].level + "\n");
+                    else for (int i = 0; i < 14; i++) Console.Write(i + 1 + ". " + sortbyName[i].Name + " - level " + sortbyName[i].level + "\n");
+                    break;
+                case 1:
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    List<Player> sortbynameDescending = playerList.OrderByDescending(o => o.Name).ToList();
+                    if(sortbynameDescending.Count < 14)
+                        for (int i = 0; i < sortbynameDescending.Count; i++) Console.Write(i+1 + ". " + sortbynameDescending[i].Name + " - level " + sortbynameDescending[i].level + "\n");
+                    else for (int i = 0; i < 14; i++) Console.Write(i + 1 + ". " + sortbynameDescending[i].Name + " - level " + sortbynameDescending[i].level + "\n");
+                    break;
+                case 2:
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    List<Player> sortByLevel = playerList.OrderBy(o => o.level).ToList();
+                    if (sortByLevel.Count < 14)
+                        for (int i = 0; i < sortByLevel.Count; i++) Console.Write(i + 1 + ". " + sortByLevel[i].Name + " - level " + sortByLevel[i].level + "\n");
+                    else for (int i = 0; i < 14; i++) Console.Write(i + 1 + ". " + sortByLevel[i].Name + " - level " + sortByLevel[i].level + "\n");
+                    break;
+                case 3:
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    List<Player> sortByLevelDescending = playerList.OrderByDescending(o => o.level).ToList();
+                    if (sortByLevelDescending.Count < 14)
+                        for (int i = 0; i < sortByLevelDescending.Count; i++) Console.Write(i + 1 + ". " + sortByLevelDescending[i].Name + " - level " + sortByLevelDescending[i].level + "\n");
+                    else for (int i = 0; i < 14; i++) Console.Write(i + 1 + ". " + sortByLevelDescending[i].Name + " - level " + sortByLevelDescending[i].level + "\n");
+                    break;
+                case 4:
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    List<Player> sortybyID = playerList.OrderBy(o => o.Id).ToList();
+                    if (sortybyID.Count < 14)
+                        for (int i = 0; i < sortybyID.Count; i++) Console.Write(i + 1 + ". " + sortybyID[i].Name + " - level " + sortybyID[i].level + "\n");
+                    else for (int i = 0; i < 14; i++) Console.Write(i + 1 + ". " + sortybyID[i].Name + " - level " + sortybyID[i].level + "\n");
+                    break;
+                case 5:
+                    Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    List<Player> sortybyIDDescending = playerList.OrderByDescending(o => o.Id).ToList();
+                    if (sortybyIDDescending.Count < 14)
+                        for (int i = 0; i < sortybyIDDescending.Count; i++) Console.Write(i + 1 + ". " + sortybyIDDescending[i].Name + " - level " + sortybyIDDescending[i].level + "\n");
+                    else for (int i = 0; i < 14; i++) Console.Write(i + 1 + ". " + sortybyIDDescending[i].Name + " - level " + sortybyIDDescending[i].level + "\n");
+                    break;
+            }
+            prefix();
+            Console.Write("Press any key to return to the main menu ... ");
+            Console.ReadKey();
+            RunMainMenu();
         }
     }
 
