@@ -203,7 +203,7 @@ Speed: 45                   Speed: 65                   Speed: 43
                 }
 
             }
-            
+            prefix();
             Console.WriteLine("Loaded account of " + playerList[index].Name + " with ID " +  index);
             Console.Write("Press any key to start the game ... Use Fullscreen for better experience!  ");
 

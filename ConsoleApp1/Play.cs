@@ -55,7 +55,8 @@ namespace ConsoleApp1
         {
             Clear();
             int enemyHealth = 10;
-            
+            Console.Write("A WILD SANDSLASH APPEARED !\n");
+            Console.ReadKey();
             while (enemyHealth > 0)
             {
                 string BulbasaurPrompt = @"
@@ -198,11 +199,11 @@ namespace ConsoleApp1
                 if (starter == "Bulbasaur")
                 {
                     Clear();
-                    Console.Write("A WILD SANDSLASH APPEARED !\n");
-                    int health = 9;
                     
+                    int health = 9;
 
-                    Console.Write(BulbasaurPrompt);
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write(EnemyPrompt);
                     Console.Write("\nHealth : " + enemyHealth + " ♥\n");
                     Console.Write("\nPress any key to continue ... \n");
                     Console.ReadKey();
@@ -212,106 +213,123 @@ namespace ConsoleApp1
                     health = health - 2;
 
                     Clear();
-                    Console.Write(starter);
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write(BulbasaurPrompt);
                     ShowStats(health, exp, level);
                     Console.ReadKey();
-                    string[] options = { "use atk 1 ", "use atk 2 "};
+                    string[] options = { "USE Vine Whip", "USE Razor Leaf"};
                     StartMenu mainMenu = new StartMenu("", options);
                     int selectedIndex = mainMenu.Run();
 
                     switch (selectedIndex)
                     {
                         case 0:
-                            Console.Write("USED ATTACK 1 ... ");
-                            Console.Write("Press any key to continue ... ");
+                            ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(BulbasaurPrompt);
+                            Console.Write("\nBULBASAUR USED VINE WHIP ... \n");
+                            Console.Write("Press any key to continue ... \n");
                             enemyHealth = enemyHealth - 6;
-                            
                             Console.ReadKey();
                             break;
                         case 1:
-                            Console.Write("USED ATTACK 2 ... \n");
+                            ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(BulbasaurPrompt);
+                            Console.Write("\nBULBASAUR USED RAZOR LEAF ... \n");
                             Console.Write("Press any key to continue ... \n");
                             enemyHealth = enemyHealth - 12;
                             Console.ReadKey();
                             break;
                     }
-
-
-
                 }
+                // thank you C# for letting me use health only in a loop and not afterwards, very helpful
                 if (starter == "Charmander")
                 {
                     Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
                     int health = 8;
-                    starter = CharmanderPrompt;
-                    ShowStats(health, exp, level);
+
 
                     Console.Write(EnemyPrompt);
                     Console.Write("\nHealth : " + enemyHealth + " ♥\n");
-                    Console.Write("Press any key to continue ... \n");
+                    Console.Write("\nPress any key to continue ... \n");
                     Console.ReadKey();
 
-                    Console.Write("Sandslash USED TACKLE !\n");
+                    Console.Write("\nSandslash USED TACKLE !\n");
                     Console.ReadKey();
                     health = health - 2;
 
                     Clear();
-                    Console.Write(starter);
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write(CharmanderPrompt);
                     ShowStats(health, exp, level);
-                    string[] options = { "use atk 1 ", "use atk 2 " };
+                    Console.ReadKey();
+                    string[] options = { "USE Ember", "USE Fire Fang" };
                     StartMenu mainMenu = new StartMenu("", options);
                     int selectedIndex = mainMenu.Run();
 
                     switch (selectedIndex)
                     {
                         case 0:
-                            Console.Write("USED ATTACK 1 ... \n");
-                            Console.Write("Press any key to continue ... \n");
+                            ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(CharmanderPrompt);
+                            Console.Write("Charmander Used Ember ... \n");
+                            Console.Write("\nPress any key to continue ... ");
+                            enemyHealth = enemyHealth - 6;
                             Console.ReadKey();
-
                             break;
                         case 1:
-                            Console.Write("USED ATTACK 1 ... \n");
-                            Console.Write("Press any key to continue ... \n");
+                            ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(CharmanderPrompt);
+                            Console.Write("Charmander Used Fire Fang... \n");
+                            Console.Write("\nPress any key to continue ... ");
+                            enemyHealth = enemyHealth - 12;
                             Console.ReadKey();
                             break;
                     }
 
                 }
+                
                 if (starter == "Squirtle")
                 {
                     Clear();
+                    ForegroundColor = ConsoleColor.DarkYellow;
                     int health = 8;
-                    starter = SquirtlePrompt;
-                    ShowStats(health, exp, level);
+
 
                     Console.Write(EnemyPrompt);
                     Console.Write("\nHealth : " + enemyHealth + " ♥\n");
-                    Console.Write("Press any key to continue ... \n");
+                    Console.Write("\nPress any key to continue ... \n");
                     Console.ReadKey();
 
-                    Console.Write("Sandslash USED TACKLE !\n");
+                    Console.Write("\nSandslash USED TACKLE !\n");
                     Console.ReadKey();
                     health = health - 2;
 
                     Clear();
-                    Console.Write(starter);
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write(SquirtlePrompt);
                     ShowStats(health, exp, level);
-                    string[] options = { "use atk 1 ", "use atk 2 " };
+                    Console.ReadKey();
+                    string[] options = { "USE Water Gun", "USE Bubble" };
                     StartMenu mainMenu = new StartMenu("", options);
                     int selectedIndex = mainMenu.Run();
 
                     switch (selectedIndex)
                     {
                         case 0:
-                            Console.Write("USED ATTACK 1 ... \n");
-                            Console.Write("Press any key to continue ... \n");
+                            ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(SquirtlePrompt);
+                            Console.Write("Squirtle Used Water Gun ... \n");
+                            Console.Write("\nPress any key to continue ... ");
+                            enemyHealth = enemyHealth - 6;
                             Console.ReadKey();
-
                             break;
                         case 1:
-                            Console.Write("USED ATTACK 1 ... \n");
-                            Console.Write("Press any key to continue ... \n");
+                            ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write(SquirtlePrompt);
+                            Console.Write("Squirtle Used Bubble ... \n");
+                            Console.Write("\nPress any key to continue ... ");
+                            enemyHealth = enemyHealth - 12;
                             Console.ReadKey();
                             break;
                     }
@@ -319,29 +337,28 @@ namespace ConsoleApp1
                 
                 
             }
-            Console.Write("\nFight ended. Pokemon healed. Press any key to start the next battle ... ");
+            Clear();
+            ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("\nFight ended. Pokemon healed. \n");
             exp = exp + 140;
             while (exp >= 100)
             {
                 exp = exp - 100;
                 level++;
-                Console.Write(starter);
                 
-                Console.Write("YOUR POKEMON JUST LEVELED UP !");
-                Console.ReadKey();
+                Console.Write("\nYOUR POKEMON JUST LEVELED UP !");
             }
-            Console.Write("Press any key to continue ... \n");
-            Console.ReadKey();
-            
-            
+
             // save data at the end of the battle
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
             playerList[index].exp = exp;
             playerList[index].level = level;
             SaveViaDataContractSerialization(playerList, "register.xml");
+            Console.Write("\n\nGame Progress Saved. Press any key to start a new battle ... \n");
+            Console.ReadKey();
             RunGame(index, starter, exp, level);
-            Console.Write("Game Progress Saved. Press any key to start a new battle ... \n");
+            
         }
         
     }
