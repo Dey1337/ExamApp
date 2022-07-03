@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Console;
 
 namespace ConsoleApp1
@@ -39,7 +35,6 @@ namespace ConsoleApp1
                 {
                     prefix = "[X]";
                     ForegroundColor = ConsoleColor.Blue;
-                    
                 }
                 else
                 {
@@ -53,7 +48,6 @@ namespace ConsoleApp1
                 Write($"{currentOption}");
                 WriteLine();
                 WriteLine();
-
             }
             ResetColor();
         }
@@ -68,7 +62,6 @@ namespace ConsoleApp1
                 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
-
 
                 if (keyPressed == ConsoleKey.UpArrow)
                 {
@@ -91,6 +84,5 @@ namespace ConsoleApp1
 
             return SelectedIndex;
         }
-
     }
 }

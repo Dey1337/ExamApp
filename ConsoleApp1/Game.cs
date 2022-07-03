@@ -5,7 +5,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 using static System.Console;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
@@ -23,8 +22,6 @@ namespace ConsoleApp1
             serializer.WriteObject(writer, serializableObject);
             writer.Close();
         }
-
-
         static T LoadViaDataContractSerialization<T>(string filepath)
         {
             var fileStream = new FileStream(filepath, FileMode.Open);
@@ -39,7 +36,6 @@ namespace ConsoleApp1
         {
             Title = "𝐏𝐎𝐊𝐄𝐌𝐎𝐍 𝐒𝐈𝐌𝐏𝐋𝐄 𝐆𝐀𝐌𝐄";
             RunMainMenu();
-
         }
 
         public void prefix()
@@ -81,9 +77,7 @@ namespace ConsoleApp1
                 case 3:
                     leaderboard();
                     break;
-
             }
-
         }
         public void newAcc()
         {
@@ -134,7 +128,6 @@ Speed: 45                   Speed: 65                   Speed: 43
                     break;
                 }else
                 {
-                    
                     Console.Write("\nPlease Type the name of the starter you have chosen ! ( Case sensitive ) : ");
                     starter = Console.ReadLine();
                 }
@@ -153,12 +146,9 @@ Speed: 45                   Speed: 65                   Speed: 43
 
                     prefix();
                     Console.WriteLine(" Welcome Trainer " + findName + "! Press any key to continue ... ");
-
-
                     break;
                 }
             }
-
             Console.ReadKey();
             PlayGame actualGame = new PlayGame();
             actualGame.RunGame(playerList.Count-1, starter, 0, 1);
@@ -227,7 +217,7 @@ Speed: 45                   Speed: 65                   Speed: 43
             Console.Write(@"There is only one pokemon to encounter, easy to fight , more may come with future updates");
 
             prefix();
-            Console.Write(@"This project was created just to practice and test what I learned so far - Adrian Mazilu - 2022");
+            Console.Write(@"This project was created just to practice and test what I learned so far ");
 
             prefix();
             Console.Write(@"Thank you for playing btw . Press any key to return to main menu ... ");
@@ -235,15 +225,12 @@ Speed: 45                   Speed: 65                   Speed: 43
             Console.ReadKey();
             Clear();
             RunMainMenu();
-
-
         }
 
         public void leaderboard()
         {
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
-
 
             string[] options = { "Order by Name", "Order by Name Descending" , "Order by Level", "Order By Level Descending" ,"Order by Creation Date", "Order by Creation Date Descending" };
             StartMenu mainMenu = new StartMenu("", options);
@@ -305,5 +292,4 @@ Speed: 45                   Speed: 65                   Speed: 43
             RunMainMenu();
         }
     }
-
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Xml;
+﻿using System.Runtime.Serialization;
 
 namespace ConsoleApp1
 {
@@ -20,7 +15,6 @@ namespace ConsoleApp1
         public int exp { get; set; }
         [DataMember]
         public int level { get; set; }
-
         public Player(int id, string name, string starter, int exp, int level)
         {
             this.Id = id;

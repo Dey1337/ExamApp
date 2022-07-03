@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 using static System.Console;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     public class PlayGame
     {
-
         static void SaveViaDataContractSerialization<T>(T serializableObject, string filepath)
         {
             var serializer = new DataContractSerializer(typeof(T));
@@ -49,8 +46,6 @@ namespace ConsoleApp1
             for (int i = exp / 10; i < 10; i++) Console.Write("▒");
             Console.Write(" " + exp + " %");
         }
-        
-
         public void RunGame(int index, string starter, int exp, int level)
         {
             Clear();
@@ -196,10 +191,10 @@ namespace ConsoleApp1
         '''''         \         _,..-'            `'''----...-'
          '-----------+---''''''''' 
 ";
+
                 if (starter == "Bulbasaur")
                 {
                     Clear();
-                    
                     int health = 9;
 
                     ForegroundColor = ConsoleColor.DarkYellow;
@@ -248,7 +243,6 @@ namespace ConsoleApp1
                     ForegroundColor = ConsoleColor.DarkYellow;
                     int health = 8;
 
-
                     Console.Write(EnemyPrompt);
                     Console.Write("\nHealth : " + enemyHealth + " ♥\n");
                     Console.Write("\nPress any key to continue ... \n");
@@ -286,7 +280,6 @@ namespace ConsoleApp1
                             Console.ReadKey();
                             break;
                     }
-
                 }
                 
                 if (starter == "Squirtle")
@@ -294,8 +287,6 @@ namespace ConsoleApp1
                     Clear();
                     ForegroundColor = ConsoleColor.DarkYellow;
                     int health = 8;
-
-
                     Console.Write(EnemyPrompt);
                     Console.Write("\nHealth : " + enemyHealth + " ♥\n");
                     Console.Write("\nPress any key to continue ... \n");
@@ -344,11 +335,9 @@ namespace ConsoleApp1
             {
                 exp = exp - 100;
                 level++;
-                
                 Console.Write("\nYOUR POKEMON JUST LEVELED UP !");
             }
 
-            // save data at the end of the battle
             List<Player> playerList = new List<Player>();
             playerList = LoadViaDataContractSerialization<List<Player>>("register.xml");
             playerList[index].exp = exp;
@@ -357,8 +346,6 @@ namespace ConsoleApp1
             Console.Write("\n\nGame Progress Saved. Press any key to start a new battle ... \n");
             Console.ReadKey();
             RunGame(index, starter, exp, level);
-            
         }
-        
     }
 }
